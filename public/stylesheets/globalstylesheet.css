@@ -1,0 +1,116 @@
+:root {
+  --sidebarW: 350px;
+}
+
+* {
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  /* font-family: 'Muli', sans-serif; */
+  font-family: 'Nunito', sans-serif;
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  margin: 0;
+  padding: 0px;
+  border: none;
+  list-style-type: none;
+  background-color: black;
+  color: #FAD0C9FF;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  /* padding: 60px 10px 10px 10px; */
+}
+
+.sidenav a {
+  padding: 8px 10px 8px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  background-color: #111;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+#idmaindiv {
+  transition: margin-left .5s;
+  /* padding: 16px; */
+  background-color: black;
+}
+
+.menuicondiv {
+  background-color: black;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menuiconsvgcont {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.menuline {
+  pointer-events: none;
+  transition: stroke-width .5s;
+  /* transition: stroke .5s; */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+/* Danger Red (#D9514EFF), Tap Shoe (#2A2B2DFF) and Blue Blossom (#2DA8D8FF) */
+/* Puffin’s Bill (#E95C20FF), Green (#006747FF) and Brown (#4F2C1DFF) */
+/* Living Coral (#FC766AFF), Storm Gray (#B0B8B4FF) and Forest Biome (#184A45FF) */
+/* Pale Lilac (#E3C9CEFF) and Lime Green (#9FC131FF) */
+/* Nebulosity (#1C1C1BFF) and Pink Yarrow (#CE4A7EFF) */
+/* Island Green (#2BAE66FF) and White (#FCF6F5FF) */
+/* Dark Green (#006B38FF) and Black (#101820FF) */
+/* Pink (#FAEBEFFF) and Navy Blue (#333D79FF) */
+/* Space Cherry (#990011FF) and White (#FCF6F5FF) */
+/* Black (#2D2926FF) and Cherry Tomato (#E94B3CFF) */
+/* Pink Salt (#FAD0C9FF) and Charcoal Gray (#6E6E6DFF) */
+/* Black (#101820FF) and Orange (#F2AA4CFF) */
+/* Black (#101820FF) and Blazing Yellow (#FEE715FF) */
+/* Blue (#00A4CCFF) and Orange (#F95700FF) */
+/* Aspen Gold (#FFD662FF) and Princess Blue (#00539CFF) */
+/* Bright Red (#F93822FF) and Cyber Yellow (#FDD20EFF) */
+/* Pale Green (#CBCE91FF) and Purple Sapphire (#76528BFF) */
+/* Hunter Green (#435E55FF) and Raspberry (#D64161FF) */
+/* Turkish Sea (#195190FF) and Silver (#A2A2A1FF) */
+/* #42EADDFF; //Turquoise */
+/* #2BAE66FF Island Green */
+/* Sailor Blue (#00203FFF) and Mint (#ADEFD1FF) */
+/* color: rgb(184, 212, 253); */
+/* color: #ADEFD1FF; */
+/* color: #F2EDD7FF; */
+/* color: #D7C49EFF; */
+/* color: #FCF6F5FF; */
+/* color: #FAD0C9FF; */
+/* color: #FCF6F5FF; */
+/* #CDB599FF; //warm sand */
+/* Royal Blue (#00539CFF) and Peach (#EEA47FFF) */

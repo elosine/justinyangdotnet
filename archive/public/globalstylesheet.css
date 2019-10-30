@@ -1,0 +1,198 @@
+:root {
+  --sidebarW: 350px;
+}
+
+* {
+  /* font-family: 'Lato'; */
+  font-family: 'PT Sans Narrow';
+  margin: 0;
+  padding: 0px;
+  border: none;
+  list-style-type: none;
+}
+
+h6 {
+  padding: 4px 3px 6px 2px;
+  text-decoration: none;
+  font-size: 40px;
+  color: #a8a8a8;
+  display: block;
+}
+
+h5 {
+  padding: 14px 6px 10px 10px;
+  text-decoration: none;
+  font-size: 40px;
+  color: #a8a8a8;
+  display: block;
+}
+
+.sidenav a {
+  padding: 10px 6px 4px 10px;
+  text-decoration: none;
+  font-size: 40px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav {
+  height: 100%;
+  width: var(--sidebarW);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+h1 {
+  padding: 0;
+  font-size: 40px;
+  /* color: rgb(153, 255, 0); */
+  /* color: #ADEFD1FF; */
+  color: #FAD0C9FF;
+}
+
+h2 {
+  color: #FAEBEFFF ;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  font-size: 40px;
+}
+
+.links {
+  padding: 10px 10px 50px 10px;
+  background-color: black;
+}
+.links a {
+  padding: 0px 0px 20px 0px;
+  display: block;
+  color: #FAEBEFFF;
+  font-size: 40px;
+}
+
+.links a:hover {
+  color: #FAD0C9FF;
+}
+
+li{
+  margin-bottom: 6px;
+}
+
+body {
+  background-color: black;
+}
+
+.head1 {
+  padding: 20px 10px 15px 30px;
+  margin-left: var(--sidebarW);
+}
+
+.divH2 {
+  padding: 5px 10px 5px 10px;
+  background-color: #6E6E6DFF;
+}
+
+.mainImgDiv{
+  width: 100%;
+  height: 272px;
+  margin: 50px 0 0 0;
+  text-align: center;
+  background-color: black;
+}
+
+.t1 {
+  padding: 0px 10px 40px 10px;
+  color: #FAEBEFFF ;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  font-size: 36px;
+  background-color: black;
+  line-height: 1.6;
+}
+
+.t1 em {
+  color: #FAD0C9FF;
+  font-style: normal;
+}
+
+.t1 a {
+  /* padding: 0px 0px 0px 0px;
+  display: block; */
+  color: #FAEBEFFF;
+  font-size: 40px;
+}
+
+.t1 a:hover {
+  color: #FAD0C9FF;
+}
+
+.main {
+  padding: 5px 15px 20px 30px;
+  margin-left: var(--sidebarW);
+  font-size: 14px;
+  color: rgb(153, 255, 0);
+  overflow-y: scroll;
+}
+
+.aspect-ratio {
+  position: relative;
+  width: calc(100% - 38px);
+  height: 0;
+  padding-bottom: 56.25%;
+  padding-left: 19px;
+}
+
+.iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 14px;
+  }
+}
+
+/* Pink (#FAEBEFFF) and Navy Blue (#333D79FF) */
+/* Space Cherry (#990011FF) and White (#FCF6F5FF) */
+/* Black (#2D2926FF) and Cherry Tomato (#E94B3CFF) */
+/* Pink Salt (#FAD0C9FF) and Charcoal Gray (#6E6E6DFF) */
+/* Black (#101820FF) and Orange (#F2AA4CFF) */
+/* Black (#101820FF) and Blazing Yellow (#FEE715FF) */
+/* Blue (#00A4CCFF) and Orange (#F95700FF) */
+/* Aspen Gold (#FFD662FF) and Princess Blue (#00539CFF) */
+/* Bright Red (#F93822FF) and Cyber Yellow (#FDD20EFF) */
+/* Pale Green (#CBCE91FF) and Purple Sapphire (#76528BFF) */
+/* Hunter Green (#435E55FF) and Raspberry (#D64161FF) */
+/* Turkish Sea (#195190FF) and Silver (#A2A2A1FF) */
+/* #42EADDFF; //Turquoise */
+/* #2BAE66FF Island Green */
+/* Sailor Blue (#00203FFF) and Mint (#ADEFD1FF) */
+/* color: rgb(184, 212, 253); */
+/* color: #ADEFD1FF; */
+/* color: #F2EDD7FF; */
+/* color: #D7C49EFF; */
+/* color: #FCF6F5FF; */
+/* color: #FAD0C9FF; */
+/* color: #FCF6F5FF; */
+/* #CDB599FF; //warm sand */
+/* Royal Blue (#00539CFF) and Peach (#EEA47FFF) */
