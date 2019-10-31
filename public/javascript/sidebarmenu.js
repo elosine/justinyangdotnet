@@ -116,9 +116,9 @@ function openNav() {
     midline.setAttributeNS(null, "stroke-linecap", 'square');
     topline.setAttributeNS(null, "stroke-linecap", 'square');
 
-    midline.setAttributeNS(null, "stroke", "#B0B8B4FF");
-    topline.setAttributeNS(null, "stroke", "#B0B8B4FF");
-    btmline.setAttributeNS(null, "stroke", "#B0B8B4FF");
+    midline.setAttributeNS(null, "stroke", "#1C1C1BFF");
+    topline.setAttributeNS(null, "stroke", "#1C1C1BFF");
+    btmline.setAttributeNS(null, "stroke", "#1C1C1BFF");
 
     navopen = true;
   } else {
@@ -131,9 +131,9 @@ function openNav() {
     btmline.setAttributeNS(null, "stroke-linecap", 'round');
     midline.setAttributeNS(null, "stroke-linecap", 'round');
     topline.setAttributeNS(null, "stroke-linecap", 'round');
-        midline.setAttributeNS(null, "stroke", "black");
-        topline.setAttributeNS(null, "stroke", "black");
-        btmline.setAttributeNS(null, "stroke", "black");
+    midline.setAttributeNS(null, "stroke", "black");
+    topline.setAttributeNS(null, "stroke", "black");
+    btmline.setAttributeNS(null, "stroke", "black");
     navopen = false;
   }
 }
