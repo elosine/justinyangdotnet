@@ -1,11 +1,17 @@
 var sidenavdiv = document.getElementById("idsidenav");
 var maindiv = document.getElementById("idmaindiv");
 var svgNS = "http://www.w3.org/2000/svg";
+// Name ----------------------------------------------------------------- //
+var mname = document.createElement('h6');
+var mnametxt = document.createTextNode("J u s t i n  Y a n g");
+mname.id = "mname";
+// mname.style.paddingTop = "66px";
+mname.appendChild(mnametxt);
+sidenavdiv.appendChild(mname);
 // M1 ----------------------------------------------------------------- //
 var link = document.createElement('a');
 var linktxt = document.createTextNode("Home");
 link.id = "m1";
-link.style.paddingTop = "66px";
 link.appendChild(linktxt);
 link.href = "#";
 sidenavdiv.appendChild(link);
@@ -49,8 +55,6 @@ tcirc.setAttributeNS(null, "stroke", "none");
 tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
 tcirc.className.baseVal = "menucirc";
 tcirc.addEventListener("click", openNav);
-// tcirc.addEventListener("mouseenter", circpink);
-// tcirc.addEventListener("mouseleave", circgreen);
 document.getElementById("idmenuiconsvgcont").appendChild(tcirc);
 
 var linetopoffset = 16;
@@ -91,36 +95,30 @@ btmline.setAttributeNS(null, "stroke-linecap", 'round');
 btmline.className.baseVal = "menuline";
 document.getElementById("idmenuiconsvgcont").appendChild(btmline);
 // CLOSE/OPEN DIV FUNCTION ------------------------------------------- //
-var sidenavW = "130px";
+var sidenavW = "145px";
 var navopen = false;
 
-function circpink() {
-  var tcirc = document.getElementById("menuiconcirc");
-  tcirc.setAttributeNS(null, "fill", "#FAD0C9FF");
-}
-
-function circgreen() {
-  var tcirc = document.getElementById("menuiconcirc");
-  tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
-}
-
 function openNav() {
+
   if (!navopen) {
     document.getElementById("idsidenav").style.width = sidenavW;
     document.getElementById("idmaindiv").style.marginLeft = sidenavW;
+
     tcirc.setAttributeNS(null, "fill", "#FAD0C9FF");
-    topline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset-3));
-    midline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset-3));
-    btmline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset-3));
+    topline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset - 3));
+    midline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset - 3));
+    btmline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset - 3));
     btmline.setAttributeNS(null, "stroke-linecap", 'square');
     midline.setAttributeNS(null, "stroke-linecap", 'square');
     topline.setAttributeNS(null, "stroke-linecap", 'square');
-
-    midline.setAttributeNS(null, "stroke", "#1C1C1BFF");
-    topline.setAttributeNS(null, "stroke", "#1C1C1BFF");
-    btmline.setAttributeNS(null, "stroke", "#1C1C1BFF");
-
+    midline.setAttributeNS(null, "stroke", "black");
+    topline.setAttributeNS(null, "stroke", "black");
+    btmline.setAttributeNS(null, "stroke", "black");
     navopen = true;
+    if (!window.matchMedia('screen and (max-width: 700px)').matches) {
+      document.getElementById("idmaindiv").style.width = "calc(100vw - " + sidenavW + ")";
+    }
+
   } else {
     document.getElementById("idsidenav").style.width = "0";
     document.getElementById("idmaindiv").style.marginLeft = "0";
@@ -135,30 +133,42 @@ function openNav() {
     btmline.setAttributeNS(null, "stroke", "black");
     tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
     navopen = false;
+    if (!window.matchMedia('screen and (max-width: 700px)').matches) {
+      document.getElementById("idmaindiv").style.width = "calc(100vw)";
+    }
   }
 }
-
+// Get rid of hover events on touchscreens ////////////////////////
 function hasTouch() {
-    return 'ontouchstart' in document.documentElement
-           || navigator.maxTouchPoints > 0
-           || navigator.msMaxTouchPoints > 0;
+  return 'ontouchstart' in document.documentElement ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0;
 }
 
 if (hasTouch()) { // remove all :hover stylesheets
-    try { // prevent exception on browsers not supporting DOM styleSheets properly
-        for (var si in document.styleSheets) {
-            var styleSheet = document.styleSheets[si];
-            if (!styleSheet.rules) continue;
+  try { // prevent exception on browsers not supporting DOM styleSheets properly
+    for (var si in document.styleSheets) {
+      var styleSheet = document.styleSheets[si];
+      if (!styleSheet.rules) continue;
 
-            for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-                if (!styleSheet.rules[ri].selectorText) continue;
+      for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+        if (!styleSheet.rules[ri].selectorText) continue;
 
-                if (styleSheet.rules[ri].selectorText.match(':hover')) {
-                    styleSheet.deleteRule(ri);
-                }
-            }
+        if (styleSheet.rules[ri].selectorText.match(':hover')) {
+          styleSheet.deleteRule(ri);
         }
-    } catch (ex) {}
+      }
+    }
+  } catch (ex) {}
+}
+// FUNCTION: winResize ---------------------------------------------- //
+window.addEventListener('resize', winResize, false);
+
+function winResize() {
+  if (window.matchMedia('screen and (max-width: 768px)').matches) {
+    console.log("too big");
+  }
+
 }
 
 
@@ -174,11 +184,3 @@ if (hasTouch()) { // remove all :hover stylesheets
 // var headheight = head.offsetHeight;
 // headheight = headheight + 55;
 // mainbody.setAttribute( "style", "height:calc(100vh - " + headheight + "px)" );
-
-// FUNCTION: winResize ---------------------------------------------- //
-// window.addEventListener('resize', winResize, false);
-// function winResize() {
-//   headheight = head.offsetHeight;
-//   headheight = headheight + 55;
-//   mainbody.setAttribute( "style", "height:calc(100vh - " + headheight + "px)" );
-// }

@@ -1,18 +1,51 @@
 :root {
-  --sidebarW: 200px;
+  --trt: .6s;
 }
 
 * {
   /* font-family: 'Source Sans Pro', sans-serif; */
   /* font-family: 'Muli', sans-serif; */
   font-family: 'Nunito', sans-serif;
-  /* font-family: 'Source Sans Pro', sans-serif; */
   margin: 0;
   padding: 0px;
   border: none;
   list-style-type: none;
   background-color: black;
   color: #FAD0C9FF;
+}
+
+.headercontainer {
+  height: 55px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background-color: green;
+}
+
+.mainheader {
+  height: 100%;
+  width: calc(100% - 55px);
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  background-color: black;
+}
+
+h6 {
+  padding: 8px 5px 10px 60px;
+  text-decoration: none;
+  font-size: 19px;
+  color: #f1f1f1;
+  display: block;
+  background-color: #111;
+  text-align: center;
+  line-height: 1.2em;
+  color: #2BAE66FF;
+  background-color: black;
+  font-variant: small-caps;
 }
 
 .sidenav {
@@ -24,8 +57,7 @@
   left: 0;
   background-color: #111;
   overflow-x: hidden;
-  transition: 0.5s;
-  /* padding: 60px 10px 10px 10px; */
+  transition: all var(--trt) linear;
 }
 
 .sidenav a {
@@ -34,7 +66,7 @@
   font-size: 25px;
   color: #818181;
   display: block;
-  transition: 0.3s;
+  transition: all var(--trt) linear;
   background-color: #111;
 }
 
@@ -45,21 +77,18 @@
 .mainbodydiv {
   position: absolute;
   background-color: black;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 61px);
   margin-top: 61px;
-}
-
-.mainImgDiv {
-  width: 570px;
-  height: 326px;
-  margin-top: 15px;
-  margin-left: 15px;
-  background-color: black;
+  transition: all var(--trt) linear;
 }
 
 .maindiv {
-  transition: margin-left .5s;
+  width: 100vw;
+  height: calc(100vh - 61px);
+  background-color: black;
+  transition: all var(--trt) linear;
 }
 
 .menuicondiv {
@@ -89,8 +118,7 @@
 
 .menuline {
   pointer-events: none;
-  transition: stroke-width .5s;
-  /* transition: stroke .5s; */
+  transition: all var(--trt) linear;
 }
 
 /* @media screen and (max-width: 400px) { */
@@ -110,15 +138,6 @@
     margin-left: 15px;
     padding-bottom: 57.26%;
     background-color: black;
-  }
-
-
-  .aspect-ratio {
-    position: relative;
-    width: calc(100% - 38px);
-    height: 100vh;
-    padding-bottom: 57.26%;
-    padding-left: 19px;
   }
 }
 
@@ -144,12 +163,5 @@
 /* #42EADDFF; //Turquoise */
 /* #2BAE66FF Island Green */
 /* Sailor Blue (#00203FFF) and Mint (#ADEFD1FF) */
-/* color: rgb(184, 212, 253); */
-/* color: #ADEFD1FF; */
-/* color: #F2EDD7FF; */
-/* color: #D7C49EFF; */
-/* color: #FCF6F5FF; */
-/* color: #FAD0C9FF; */
-/* color: #FCF6F5FF; */
 /* #CDB599FF; //warm sand */
 /* Royal Blue (#00539CFF) and Peach (#EEA47FFF) */
