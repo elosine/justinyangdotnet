@@ -79,12 +79,8 @@
 
 @media screen and (max-width: 400px) {
   .menucirc:hover {
-    fill: #2BAE66FF;
   }
-  .sidenav a {
-    font-size: 125px;
 
-  }
 }
 
 /* Danger Red (#D9514EFF), Tap Shoe (#2A2B2DFF) and Blue Blossom (#2DA8D8FF) */
