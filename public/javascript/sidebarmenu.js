@@ -134,6 +134,7 @@ function openNav() {
     midline.setAttributeNS(null, "stroke", "black");
     topline.setAttributeNS(null, "stroke", "black");
     btmline.setAttributeNS(null, "stroke", "black");
+    document.activeElement.blur();
     navopen = false;
   }
 }
