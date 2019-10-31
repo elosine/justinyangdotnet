@@ -13,7 +13,7 @@ var link = document.createElement('a');
 var linktxt = document.createTextNode("Home");
 link.id = "m1";
 link.appendChild(linktxt);
-link.href = "#";
+link.href = "index.html";
 sidenavdiv.appendChild(link);
 // M2 ----------------------------------------------------------------- //
 var link = document.createElement('a');
