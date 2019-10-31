@@ -42,10 +42,24 @@
   color: #f1f1f1;
 }
 
-#idmaindiv {
-  transition: margin-left .5s;
-  /* padding: 16px; */
+.mainbodydiv {
+  position: absolute;
   background-color: black;
+  width: 100%;
+  height: 100%;
+  margin-top: 61px;
+}
+
+.mainImgDiv {
+  width: 570px;
+  height: 326px;
+  margin-top: 15px;
+  margin-left: 15px;
+  background-color: black;
+}
+
+.maindiv {
+  transition: margin-left .5s;
 }
 
 .menuicondiv {
@@ -79,9 +93,33 @@
   /* transition: stroke .5s; */
 }
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) { */
+@media screen and (max-width: 600px) {
+  .mainbodydiv {
+    position: absolute;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 61px;
+  }
+
+  .mainImgDiv {
+    position: relative;
+    width: calc(100vw - 45px);
+    height: 0;
+    margin-left: 15px;
+    padding-bottom: 57.26%;
+    background-color: black;
+  }
 
 
+  .aspect-ratio {
+    position: relative;
+    width: calc(100% - 38px);
+    height: 100vh;
+    padding-bottom: 57.26%;
+    padding-left: 19px;
+  }
 }
 
 /* Danger Red (#D9514EFF), Tap Shoe (#2A2B2DFF) and Blue Blossom (#2DA8D8FF) */
