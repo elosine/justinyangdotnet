@@ -100,6 +100,15 @@ h6 {
   left: 0;
 }
 
+.mainImgDiv {
+  display: inline-block;
+  vertical-align:middle;
+  width:570px;
+  height:326px;
+  margin-top:15px;
+  background-color:black;
+}
+
 .menuiconsvgcont {
   background-color: black;
   width: 100%;
@@ -122,18 +131,26 @@ h6 {
 }
 
 /* @media screen and (max-width: 400px) { */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
+
+
+  .maindiv {
+    width: 100vw;
+    height: calc(100vh - 61px);
+    background-color: black;
+    transition: all var(--trt) linear;
+  }
   .mainbodydiv {
     position: absolute;
     background-color: black;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     margin-top: 61px;
   }
 
   .mainImgDiv {
     position: relative;
-    width: calc(100vw - 45px);
+    width: calc(100% - 45px);
     height: 0;
     margin-left: 15px;
     padding-bottom: 57.26%;
