@@ -91,7 +91,7 @@ btmline.setAttributeNS(null, "stroke-linecap", 'round');
 btmline.className.baseVal = "menuline";
 document.getElementById("idmenuiconsvgcont").appendChild(btmline);
 // CLOSE/OPEN DIV FUNCTION ------------------------------------------- //
-var sidenavW = "150px";
+var sidenavW = "130px";
 var navopen = false;
 
 function circpink() {
@@ -109,9 +109,9 @@ function openNav() {
     document.getElementById("idsidenav").style.width = sidenavW;
     document.getElementById("idmaindiv").style.marginLeft = sidenavW;
     tcirc.setAttributeNS(null, "fill", "#FAD0C9FF");
-    topline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset));
-    midline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset));
-    btmline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset));
+    topline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset-3));
+    midline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset-3));
+    btmline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset-3));
     btmline.setAttributeNS(null, "stroke-linecap", 'square');
     midline.setAttributeNS(null, "stroke-linecap", 'square');
     topline.setAttributeNS(null, "stroke-linecap", 'square');
