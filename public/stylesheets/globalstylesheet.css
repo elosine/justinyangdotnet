@@ -67,15 +67,23 @@
   z-index: 1;
 }
 
+.menucirc:hover {
+  fill: #FAD0C9FF;
+}
+
 .menuline {
   pointer-events: none;
   transition: stroke-width .5s;
   /* transition: stroke .5s; */
 }
 
-@media screen and (max-width: 350px) {
-  .sidenav a:hover {
-    color: #f1f1f1;
+@media screen and (max-width: 400px) {
+  .menucirc:hover {
+    fill: #2BAE66FF;
+  }
+  .sidenav a {
+    font-size: 125px;
+
   }
 }
 

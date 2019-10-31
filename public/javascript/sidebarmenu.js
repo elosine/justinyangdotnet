@@ -49,8 +49,8 @@ tcirc.setAttributeNS(null, "stroke", "none");
 tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
 tcirc.className.baseVal = "menucirc";
 tcirc.addEventListener("click", openNav);
-tcirc.addEventListener("mouseenter", circpink);
-tcirc.addEventListener("mouseleave", circgreen);
+// tcirc.addEventListener("mouseenter", circpink);
+// tcirc.addEventListener("mouseleave", circgreen);
 document.getElementById("idmenuiconsvgcont").appendChild(tcirc);
 
 var linetopoffset = 16;
@@ -108,7 +108,7 @@ function openNav() {
   if (!navopen) {
     document.getElementById("idsidenav").style.width = sidenavW;
     document.getElementById("idmaindiv").style.marginLeft = sidenavW;
-    var tcirc = document.getElementById("menuiconcirc");
+    tcirc.setAttributeNS(null, "fill", "#FAD0C9FF");
     topline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset));
     midline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset));
     btmline.setAttributeNS(null, "stroke-width", (circctr - linesideoffset));
@@ -124,7 +124,6 @@ function openNav() {
   } else {
     document.getElementById("idsidenav").style.width = "0";
     document.getElementById("idmaindiv").style.marginLeft = "0";
-    var tcirc = document.getElementById("menuiconcirc");
     topline.setAttributeNS(null, "stroke-width", lineW);
     midline.setAttributeNS(null, "stroke-width", lineW);
     btmline.setAttributeNS(null, "stroke-width", lineW);
@@ -134,7 +133,7 @@ function openNav() {
     midline.setAttributeNS(null, "stroke", "black");
     topline.setAttributeNS(null, "stroke", "black");
     btmline.setAttributeNS(null, "stroke", "black");
-    document.activeElement.blur();
+    tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
     navopen = false;
   }
 }
