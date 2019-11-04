@@ -51,6 +51,7 @@ tcirc.setAttributeNS(null, "cy", (menuicondivH / 2));
 tcirc.setAttributeNS(null, "r", (menuicondivW / 2));
 tcirc.setAttributeNS(null, "stroke", "none");
 tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
+tcirc.setAttributeNS(null, "cursor", "pointer");
 tcirc.className.baseVal = "menucirc";
 tcirc.addEventListener("click", openNav);
 document.getElementById("idmenuiconsvgcont").appendChild(tcirc);

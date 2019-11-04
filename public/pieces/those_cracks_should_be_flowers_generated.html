@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Those cracks should be flowers</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+</head>
+
+<style>
+  * {
+    font-family: 'Lato';
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  #svgcanvas {
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<body onload='setup();'>
+  <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Filter: white -->
+      <filter id="white" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs -->
+        <!-- (57, 255, 20) -->
+        <feColorMatrix result="limegreen-blur" in="blur-merged" type="matrix" values="
+                               1 0 0 0 0
+                               0 1 0 0 0
+                               0 0 1 0 0
+                               0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="limegreen-blur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neongreen -->
+      <filter id="neongreen" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs red-->
+        <!-- (57, 255, 20) -->
+        <feColorMatrix result="limegreen-blur" in="blur-merged" type="matrix" values="
+                               0.22 0 0 0 0
+                               0 1 0 0 0
+                               0 0 0.08 0 0
+                               0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="limegreen-blur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonyellow -->
+      <filter id="neonyellow" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs -->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 1 0 0 0 0
+                                 0 1 0 0 0
+                                 0 0 0 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonorange -->
+      <filter id="neonorange" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs red-->
+        <!-- (255, 103, 0) -->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 1 0 0 0 0
+                                 0 0.6 0 0 0
+                                 0 0 0.2 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonpurple -->
+      <filter id="neonpurple" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs red-->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 0.28 0 0 0 0
+                                 0 0.16 0 0 0
+                                 0 0 0.77 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonred -->
+      <filter id="neonred" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs red-->
+        <!-- (255, 7, 5) -->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 1 0 0 0 0
+                                 0 0.03 0 0 0
+                                 0 0 0.23 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonpink -->
+      <filter id="neonpink" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs -->
+        <!-- (255, 1, 154) -->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 1 0 0 0 0
+                                 0 0 0 0 0
+                                 0 0 0.6 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonturquoise -->
+      <filter id="neonturquoise" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs -->
+        <!-- (21, 244, 238) -->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 0.08 0 0 0 0
+                                 0 0.96 0 0 0
+                                 0 0 0.93 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+
+      <!-- Filter: neonblue -->
+      <filter id="neonblue" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- blur the text at different levels-->
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur5" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur10" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur20" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="blur30" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="blur50" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="blur60" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="70" result="blur70" />
+        <!-- merge all the blurs except for the first one -->
+        <feMerge result="blur-merged">
+          <feMergeNode in="blur10" />
+          <feMergeNode in="blur20" />
+          <feMergeNode in="blur30" />
+          <feMergeNode in="blur50" />
+          <feMergeNode in="blur60" />
+          <!-- <feMergeNode in="blur70" /> -->
+        </feMerge>
+        <!-- recolour the merged blurs -->
+        <!-- (6, 107, 225) -->
+        <feColorMatrix result="coloredblur" in="blur-merged" type="matrix" values="
+                                 0.02 0 0 0 0
+                                 0 0.42 0 0 0
+                                 0 0 0.88 0 0
+                                 0 0 0 1 0" />
+        <feMerge>
+          <feMergeNode in="coloredblur" /> <!-- largest blurs coloured red -->
+          <feMergeNode in="blur5" /> <!-- smallest blur left white -->
+          <feMergeNode in="SourceGraphic" /> <!-- original white text -->
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+</body>
+
+<script>
+  // GLOBAL VARIABLES ---------------------------------------------- //
+  //TIMING & ANIMATION ENGINE ////////////////////////////////
+  var FRAMERATE = 60.0;
+  var MSPERFRAME = 1000.0 / FRAMERATE;
+  var SECPERFRAME = 1.0 / FRAMERATE;
+  var PXPERSEC = 100.0;
+  var PXPERMS = PXPERSEC / 1000.0;
+  var PXPERFRAME = PXPERSEC / FRAMERATE;
+  var framect = 0;
+  var delta = 0.0;
+  var lastFrameTimeMs = 0.0;
+  var pieceClock = 0.0;
+  var clockadj = 0.0;
+  // COLORS ////////////////////////////////////////////////
+  var neonred = 'rgb(255, 7, 5)',
+    neonpurple = 'rgb(72, 40, 197)',
+    neongreen = 'rgb(57, 255, 20)',
+    neonyellow = 'rgb(255,255,0)',
+    // neonorange = 'rgb(255, 103, 0)',
+    neonorange = 'rgb(255, 153, 51)',
+    neonpink = 'rgb(255, 1, 154)',
+    neonturquoise = 'rgb(21, 244, 238)',
+    neonblue = 'rgb(6, 107, 225)',
+    white = 'rgb(255,255,255)';
+  // SVG ///////////////////////////////////////////////////
+  var svgcanvas = document.getElementById('svgcanvas');
+  var svgNS = "http://www.w3.org/2000/svg";
+  var canvasW = window.innerWidth;
+  var canvasH = window.innerHeight;
+  // BLENDING ////////////////////////////////////////////////
+  var blendgroup = document.createElementNS(svgNS, 'g');
+  blendgroup.setAttribute('style', "isolation: isolate");
+  svgcanvas.appendChild(blendgroup);
+  // LINES /////////////////////////////////////////////////
+  var ppLinesSet = [];
+  var oscLinesSet = [];
+  var numLines = 2;
+  var accelMin = 0.997;
+  var accelMax = 1.001;
+  var maxSpd = 0.9;
+  var minSpd = 0.1;
+  var spdChgGate = true;
+  // AUDIO /////////////////////////////////////////////////
+  var masterGain;
+  var iRampTime = 9;
+  var CENTERPITCHMIDIOG = [41, 48, 55, 62, 69, 76, 83];
+  var shufNumsOG = [];
+  var CENTERPITCHMIDI = [];
+  var filterClrs = [];
+  var ppClrs = [];
+  for (var i = 0; i < CENTERPITCHMIDIOG.length; i++) {
+    shufNumsOG.push(i);
+  }
+  var shufNums = shuffle(shufNumsOG);
+  for (var i = 0; i < shufNums.length; i++) {
+    CENTERPITCHMIDI.push(CENTERPITCHMIDIOG[shufNums[i]]);
+  }
+  var filterClrsOG = ['url(#neongreen)', 'url(#neonpurple)', 'url(#neonblue)', 'url(#neonorange)',
+    'url(#neonyellow)', 'url(#neonpink)', 'url(#neonturquoise)'
+  ];
+  var filterWhite = 'url(#white)';
+  var ppClrsOG = [neongreen, neonpurple, neonblue, neonorange,
+    neonyellow, neonpink, neonturquoise
+  ];
+  for (var i = 0; i < shufNums.length; i++) {
+    filterClrs.push(filterClrsOG[shufNums[i]]);
+    ppClrs.push(ppClrsOG[shufNums[i]]);
+  }
+  var CENTERPITCHFREQS = [];
+  for (var i = 0; i < CENTERPITCHMIDI.length; i++) {
+    var tempfreq = mtof(CENTERPITCHMIDI[i]);
+    CENTERPITCHFREQS.push(tempfreq);
+  }
+  var pitchPoles = [];
+  var pitchPolePitchIx = 0;
+  var oscillators = [];
+  var audioCtx;
+  var played = false;
+  var startButton;
+  var ppLinesIx = 0;
+  var oscLinesIx = 1000;
+  var MINGAIN = -30;
+  var MINGAINLINAMP = db2linamp(MINGAIN);
+  var MINAMP = 0.0001;
+  // POLE VERTICAL MOVEMENT /////////////////////////
+  var Y1MIN = 4;
+  var Y2MAX = canvasH - Y1MIN;
+  var MAXYSPD = 0.7;
+  var MINYSPD = 0.2;
+  var mvLinesVertOn = false;
+  var resetVertLines = false;
+  var mvLinesVertOnGate = false;
+  var resetVertLinesGate = false;
+  // GENERATED COMPOSITION /////////////////////////
+  var pieceData;
+  var playPieceGate = false;
+  // SET UP ----------------------------------------------------------- //
+  function setup() {
+    pieceData = generatePiece(2.5);
+    mkStartBtn();
+    window.addEventListener('resize', winResize, false);
+  }
+  // FUNCTION: generatePiece ------------------------------------------- //
+  function generatePiece(durmin) {
+    var dat = {};
+    var timelineFrames = {};
+
+    // Percentage divide for accretion and diminution between 24-33%
+    dat.sec1 = rrand(0.67, 0.76);
+    dat.sec2 = 1 - dat.sec1;
+    // Divide 1st 2/3rds of first part into 7 sections for launch of pps
+    dat.sec1Part1 = rrand(0.67, 0.76) * dat.sec1;
+    dat.ppSections = divvy(0, dat.sec1Part1, 6, 0.02);
+    // Make 1st pp launch at start of piece
+    dat.ppSections.unshift(0);
+    // First BOsc launches shortly after first pp
+    dat.firstBOsc = rrand(0.04, 0.07);
+    // Divide middle 3rd of 1st part into 3-5 sections for oscillators
+    dat.numBOscs = rrandInt(2, 4);
+    dat.startBOscSections = rrand(0.15, 0.21);
+    dat.bOscSecLength = rrand(0.295, 0.368);
+    dat.bOscTimes = divvy(dat.startBOscSections, dat.bOscSecLength, dat.numBOscs, 0.02);
+    dat.bOscTimes.unshift(dat.firstBOsc);
+    // 1st half of 2nd section remove bosc to 1
+    dat.rmvBOscDur = dat.sec2 * rrand(0.48, 0.54);
+    dat.rmvBOscTimes = divvy(dat.sec1, dat.rmvBOscDur, dat.numBOscs, 0.02);
+    // 2nd section remove all but 1 pp
+    dat.rmvPpTimes = divvy(dat.sec1, dat.sec2, 6, 0.02);
+    // 1st 3rd of middle 3rd crescendos on, last 3rd of middle 3rd crescendos off
+    dat.startCres = rrand(0.33, 0.44);
+    dat.stopCres = rrand(0.56, 0.67);
+    var dur = durmin * 60;
+    // Convert timings to frames /////////////////////
+    var ppOnFrames = [];
+    for (var i = 0; i < dat.ppSections.length; i++) {
+      var tnewframe = Math.round(dat.ppSections[i] * dur * FRAMERATE);
+      ppOnFrames.push(tnewframe);
+    }
+    timelineFrames.ppOnFrames = ppOnFrames;
+    var bOscOnFrames = [];
+    for (var i = 0; i < dat.bOscTimes.length; i++) {
+      var tnewframe = Math.round(dat.bOscTimes[i] * dur * FRAMERATE);
+      bOscOnFrames.push(tnewframe);
+    }
+    timelineFrames.bOscOnFrames = bOscOnFrames;
+    var rmvBOscFrames = [];
+    for (var i = 0; i < dat.rmvBOscTimes.length; i++) {
+      var tnewframe = Math.round(dat.rmvBOscTimes[i] * dur * FRAMERATE);
+      rmvBOscFrames.push(tnewframe);
+    }
+    timelineFrames.rmvBOscFrames = rmvBOscFrames;
+    var rmvPpFrames = [];
+    for (var i = 0; i < dat.rmvPpTimes.length; i++) {
+      var tnewframe = Math.round(dat.rmvPpTimes[i] * dur * FRAMERATE);
+      rmvPpFrames.push(tnewframe);
+    }
+    timelineFrames.rmvPpFrames = rmvPpFrames;
+    var startCresFrame = dat.startCres * dur * FRAMERATE;
+    var stopCresFrame = dat.stopCres * dur * FRAMERATE;
+    timelineFrames.startCresFrame = startCresFrame;
+    timelineFrames.stopCresFrame = stopCresFrame;
+    timelineFrames.durFrames = dur * FRAMERATE;
+    return timelineFrames;
+  }
+  var g = true;
+  // FUNCTION: playPiece ------------------------------------------- //
+  function playPiece() {
+    if (playPieceGate) {
+      for (var i = 0; i < pieceData.ppOnFrames.length; i++) {
+        if (framect == pieceData.ppOnFrames[i]) {
+          mkPitchPole();
+        }
+      }
+      for (var i = 0; i < pieceData.bOscOnFrames.length; i++) {
+        if (framect == pieceData.bOscOnFrames[i]) {
+          mkOscillatorLine();
+        }
+      }
+      for (var i = 0; i < pieceData.rmvBOscFrames.length; i++) {
+        if (framect == pieceData.rmvBOscFrames[i]) {
+          rmvBOsc();
+        }
+      }
+      for (var i = 0; i < pieceData.rmvPpFrames.length; i++) {
+        if (framect == pieceData.rmvPpFrames[i]) {
+          rmvPP();
+        }
+      }
+      if (framect == pieceData.startCresFrame) {
+        vertMvtOn();
+      }
+      if (framect == pieceData.stopCresFrame) {
+        vertMvtOff();
+      }
+      //remove last pp
+      //framect - 10 seconds
+      if (framect == pieceData.durFrames) {
+        rmvPP();
+      }
+      //kill audio
+      var killaudioframe = pieceData.durFrames + (FRAMERATE * 10);
+      if (framect == killaudioframe) {
+        killAudio();
+      }
+
+    }
+  }
+
+  // FUNCTION: divvy ------------------------------------------- //
+  //// Generates a set of parts from a number and a min
+  function divvy(start, number, parts, min) {
+
+    var randombit = number - min * parts;
+    var out = [];
+
+    for (var i = 0; i < parts; i++) {
+      out.push(Math.random());
+    }
+
+    var mult = randombit / out.reduce(function(a, b) {
+      return a + b;
+    });
+    var out1 = out.map(function(el) {
+      return el * mult + min;
+    });
+
+    var pieces = [];
+    for (var i = 0; i < out1.length; i++) {
+      var newsum = 0;
+      for (var j = i; j >= 0; j--) {
+        newsum = newsum + out1[j];
+      }
+      newsum = newsum + start;
+      pieces.push(newsum);
+    }
+    return pieces;
+  }
+  //FUNCTION play ------------------------------------------------------ //
+  function play() {
+    if (!played) {
+      played = true;
+      playPieceGate = true;
+      startButton.parentNode.removeChild(startButton);
+      initAudio();
+      requestAnimationFrame(animationEngine);
+    }
+  }
+  // UPDATE ---------------------------------------------------------- //
+  function update(MSPERFRAME) {
+    // Piece Form ////////////////////////////////
+    playPiece();
+    // Clocks ////////////////////////////////////////////////
+    framect++;
+    pieceClock += MSPERFRAME;
+    pieceClock = pieceClock - clockadj;
+    // Lines /////////////////////////////////////////////////
+    mvLines(ppLinesSet);
+    mvLines(oscLinesSet);
+    updateLinesClock();
+    mvLinesVert(ppLinesSet);
+    vertLinesReset(ppLinesSet)
+    chgOscFreq();
+    pan();
+  }
+  // ANIMATION ENGINE --------------------------------------------------- //
+  function animationEngine(timestamp) {
+    delta += timestamp - lastFrameTimeMs;
+    lastFrameTimeMs = timestamp;
+    while (delta >= MSPERFRAME) {
+      update(MSPERFRAME);
+      delta -= MSPERFRAME;
+    }
+    requestAnimationFrame(animationEngine);
+  }
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
+  //FUNCTION mkOscillatorLine ------------------------------------------- //
+  function mkOscillatorLine() {
+    var tosclineix = oscLinesIx;
+    oscLinesIx++;
+    var tempLine = mkLine('boscline', filterWhite, white, tosclineix, oscLinesSet);
+    for (var i = 0; i < pitchPoles.length; i++) {
+      // Make Gain Node ///////////////////////////////////
+      var tempGainNode = audioCtx.createGain();
+      tempGainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+      var tPanNode = audioCtx.createStereoPanner();
+      tempGainNode.connect(tPanNode);
+      // tPanNode.connect(audioCtx.destination);
+      tempGainNode.connect(masterGain);
+      // Make Oscillator ///////////////////////////////////
+      var tempOsc = audioCtx.createOscillator();
+      tempOsc.type = 'sine';
+      tempOsc.frequency.setValueAtTime(440, audioCtx.currentTime);
+      tempOsc.connect(tempGainNode);
+      tempOsc.start();
+      var tGain = pitchPoles[i][2];
+      envAtk2(tempGainNode.gain, 0, iRampTime, tGain)
+      // envAtk0(tempGainNode.gain, 6, tGain);
+      var tNewClock = 0;
+      var ton = true;
+      var oscGr = [tempLine, tempGainNode, tempOsc, tGain, tosclineix, tPanNode, tNewClock, ton];
+      oscillators.push(oscGr);
+      pitchPoles[i][6].push(oscGr);
+    }
+  }
+  //FUNCTION mkPitchPole ------------------------------------------------ //
+  function mkPitchPole() {
+    // Make Gain Node ///////////////////////////////////
+    var tempGainNode = audioCtx.createGain();
+    var tPanNode = audioCtx.createStereoPanner();
+    tempGainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    tempGainNode.connect(tPanNode);
+    // tPanNode.connect(audioCtx.destination);
+    tPanNode.connect(masterGain);
+    // Make Oscillator ///////////////////////////////////
+    var tempOsc = audioCtx.createOscillator();
+    tempOsc.type = 'sine';
+    var tempFreq = CENTERPITCHFREQS[pitchPolePitchIx];
+    var tempMidi = CENTERPITCHMIDI[pitchPolePitchIx];
+    var tClr = filterClrs[pitchPolePitchIx];
+    var tppclr = ppClrs[pitchPolePitchIx];
+    tempOsc.frequency.setValueAtTime(tempFreq, audioCtx.currentTime);
+    pitchPolePitchIx = (pitchPolePitchIx + 1) % CENTERPITCHFREQS.length;
+    tempOsc.connect(tempGainNode);
+    tempOsc.start();
+    var tempLine = mkLine('ppline', tClr, tppclr, ppLinesIx, ppLinesSet);
+    var tppLineix = ppLinesIx;
+    ppLinesIx++;
+    var tNewGain = MINGAIN + -80 + equalLoudnessCalc(tempFreq, 80);
+    tNewGain = db2linamp(tNewGain);
+    envAtk2(tempGainNode.gain, 0, iRampTime, tNewGain);
+    // envAtk0(tempGainNode.gain, 6, tNewGain);
+    //Make oscillator without line for every new pitchpole
+    var tNewOscs = [];
+    var tNewClock = 0;
+    for (var i = 0; i < oscLinesSet.length; i++) {
+      var tempGainNode2 = audioCtx.createGain();
+      tempGainNode2.gain.setValueAtTime(0, audioCtx.currentTime);
+      var tPanNode2 = audioCtx.createStereoPanner();
+      tempGainNode2.connect(tPanNode2);
+      // tPanNode2.connect(audioCtx.destination);
+      tPanNode2.connect(masterGain);
+      var tempOsc2 = audioCtx.createOscillator();
+      tempOsc2.type = 'sine';
+      tempOsc2.frequency.setValueAtTime(tempFreq, audioCtx.currentTime);
+      tempOsc2.connect(tempGainNode2);
+      tempOsc2.start();
+      envAtk2(tempGainNode2.gain, 0, iRampTime, tNewGain);
+      var toscOn = true;
+      var oscGr = [oscLinesSet[i], tempGainNode2, tempOsc2, tNewGain, oscLinesSet[i][4], tPanNode2, tNewClock, toscOn];
+      oscillators.push(oscGr);
+      tNewOscs.push(oscGr);
+    }
+    var tppon = true;
+    var ppGr = [tempLine, tempGainNode, tNewGain, tempOsc, tempFreq, tempMidi, tNewOscs, tppLineix, tPanNode, tNewClock, tppon];
+    pitchPoles.push(ppGr);
+  }
+  // FUNCTION mkLine ---------------------------------------------------- //
+  function mkLine(lineName, filterclr, lineclr, ix, lineset) {
+    var templine = document.createElementNS(svgNS, 'line');
+    var lineID = lineName + ix;
+    templine.setAttributeNS(null, 'id', lineID);
+    templine.setAttributeNS(null, 'x1', 1);
+    templine.setAttributeNS(null, 'x2', 1);
+    templine.setAttributeNS(null, 'y1', Y1MIN);
+    templine.setAttributeNS(null, 'y2', Y2MAX);
+    templine.setAttributeNS(null, 'stroke', lineclr);
+    templine.setAttributeNS(null, 'stroke-width', 8);
+    templine.setAttributeNS(null, 'filter', filterclr);
+    templine.setAttributeNS(null, 'stroke-linecap', 'round');
+    templine.setAttributeNS(null, 'style', "mix-blend-mode: multiply");
+    blendgroup.appendChild(templine);
+    var tempSpd = rrand(minSpd, maxSpd);
+    var tempAccel = rrand(accelMin, accelMax);
+    var tYshrinkPt = rrandInt(2, Y2MAX);
+    var tHdir = 1;
+    var tY1Dir = 1;
+    var tY2Dir = -1;
+    var tYspd = rrand(MINYSPD, MAXYSPD);
+    var tMvY = false;
+    var tYMoving = false;
+    var tempLineGroup = [templine, tempSpd, tempAccel, tHdir, ix, tYshrinkPt, tYspd, tMvY, tYMoving, lineID, tY1Dir, tY2Dir];
+    lineset.push(tempLineGroup);
+    return tempLineGroup;
+  }
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
+  // FUNCTION: mvLines -------------------------------------------------- //
+  function mvLines(set) {
+    for (var i = 0; i < set.length; i++) {
+      var oldX = parseFloat(set[i][0].getAttributeNS(null, 'x1'));
+      var oldSpd = set[i][1];
+      var oldAcc = set[i][2];
+      var oldDir = set[i][3];
+      var newSpd, newAcc, newDir, newX;
+      var chgSpd;
+      //// Boundry Detection ////////////////////////
+      if (oldX > canvasW) {
+        newDir = -1;
+      } else if (oldX < 0) {
+        newDir = 1;
+      } else {
+        newDir = oldDir;
+      }
+      //// Has Accel/Decel made the line too fast/slow?
+      if (oldSpd > maxSpd || oldSpd < minSpd) {
+        newAcc = scale((1 - norm(oldAcc, accelMin, accelMax)), 0.0, 1.0, accelMin, accelMax);
+        if (oldSpd >= maxSpd) {
+          chgSpd = maxSpd;
+        } else if (oldSpd <= minSpd) {
+          chgSpd = minSpd;
+        }
+        spdChgGate = false;
+      } else {
+        newAcc = oldAcc;
+      }
+      if (spdChgGate) {
+        newSpd = oldSpd * newAcc;
+      } else {
+        newSpd = chgSpd * newAcc;
+        spdChgGate = true;
+      }
+      newX = oldX + (newSpd * newDir);
+      set[i][0].setAttributeNS(null, "x1", newX);
+      set[i][0].setAttributeNS(null, "x2", newX);
+      set[i][1] = newSpd;
+      set[i][2] = newAcc;
+      set[i][3] = newDir;
+    }
+  }
+  // FUNCTION: updateLinesClock ------------------------------------------ //
+  function updateLinesClock() {
+    for (var i = 0; i < pitchPoles.length; i++) {
+      var tOldT = pitchPoles[i][9];
+      var tNewT = tOldT + SECPERFRAME;
+      pitchPoles[i][9] = tNewT;
+      for (var j = 0; j < pitchPoles[i][6].length; j++) {
+        var tOldT2 = pitchPoles[i][6][j][6];
+        var tNewT2 = tOldT2 + SECPERFRAME;
+        pitchPoles[i][6][j][6] = tNewT2;
+      }
+    }
+    for (var j = 0; j < oscillators.length; j++) {
+      var tOldT2 = oscillators[j][6];
+      var tNewT2 = tOldT2 + SECPERFRAME;
+      oscillators[j][6] = tNewT2;
+    }
+  }
+  // FUNCTION: chgOscFreq ----------------------------------------------- //
+  function chgOscFreq() {
+    for (var i = 0; i < oscLinesSet.length; i++) {
+      var tOscX = parseFloat(oscLinesSet[i][0].getAttributeNS(null, 'x1'));
+      for (var j = 0; j < ppLinesSet.length; j++) {
+        var tPPx = parseFloat(ppLinesSet[j][0].getAttributeNS(null, "x1"));
+        // Find distance between pitchpoleLine and oscillatorLine
+        // & normalized midi difference
+        var tDist = tPPx - tOscX;
+        var tDiffMidi = scale(tDist, 0, canvasW, 0, 1);
+        // Find pitchpole that corresponds to this ppline
+        var tpp;
+        for (var j2 = 0; j2 < pitchPoles.length; j2++) {
+          if (pitchPoles[j2][7] == ppLinesSet[j][4]) {
+            tpp = pitchPoles[j2];
+            break;
+          }
+        }
+        //for each pp look through the array of oscillators
+        //and find the one that corresponds to this oscline
+        var tbosc;
+        for (var k = 0; k < tpp[6].length; k++) {
+          if (tpp[6][k][4] == oscLinesSet[i][4]) { //linesix
+            tbosc = tpp[6][k]; //oscgroup
+            break;
+          }
+        }
+        // Get Midi Pitch of pitch pole ///////////////////////////////////
+        var tPPmidi = tpp[5];
+        // Calculate a new frequency for the bosc
+        var tNewFreq;
+        if (tPPx >= tOscX) {
+          tNewFreq = mtof(tPPmidi - tDiffMidi);
+        } else if (tOscX > tPPx) {
+          tNewFreq = mtof(tPPmidi + tDiffMidi);
+        }
+        if (framect % 240 == 0) {}
+        tbosc[2].frequency.setValueAtTime(tNewFreq, audioCtx.currentTime);
+      }
+    }
+  }
+  // FUNCTION: pan ------------------------------------------------------ //
+  function pan() {
+    for (var i = 0; i < oscLinesSet.length; i++) {
+      var tOscX = parseFloat(oscLinesSet[i][0].getAttributeNS(null, 'x1'));
+      var tpan = scale(tOscX, 0, canvasW, -1, 1);
+      tpan = clamp(tpan, -1, 1);
+      for (var j = 0; j < oscillators.length; j++) {
+        if (oscLinesSet[i][4] == oscillators[j][4]) {
+          oscillators[j][5].pan.setValueAtTime(tpan, audioCtx.currentTime);
+        }
+      }
+    }
+  }
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
+  //FUNCTION: mvLinesVert ----------------------------------------------- //
+  function mvLinesVert(linesSet) {
+    if (mvLinesVertOn) {
+      for (var i = 0; i < linesSet.length; i++) {
+        // Shrink/Grow Lines //////////////////////////////
+        var line2growshrink = linesSet[i][0];
+        var tOldY1 = parseFloat(line2growshrink.getAttributeNS(null, 'y1'));
+        var tOldY2 = parseFloat(line2growshrink.getAttributeNS(null, 'y2'));
+        var tYSpd = linesSet[i][6];
+        var tYshrinkPt = linesSet[i][5];
+        var tY1Dir = linesSet[i][10];
+        var tY2Dir = linesSet[i][11];
+        if (tOldY1 < 0) {
+          tY1Dir = 1;
+        } else if (tOldY1 > tYshrinkPt) {
+          tY1Dir = -1;
+        }
+        if (tOldY2 > Y2MAX) {
+          tY2Dir = -1;
+        } else if (tOldY2 < tYshrinkPt) {
+          tY2Dir = 1;
+        }
+        linesSet[i][10] = tY1Dir;
+        linesSet[i][11] = tY2Dir;
+        var tNewY1 = tOldY1 + (tYSpd * tY1Dir);
+        var tNewY2 = tOldY2 + (tYSpd * tY2Dir);
+        line2growshrink.setAttributeNS(null, 'y1', tNewY1);
+        line2growshrink.setAttributeNS(null, 'y2', tNewY2);
+        var tLineLength = Math.abs(tNewY1 - tNewY2);
+        // Pitch Pole Gain /////////////////////////////
+        for (var j = 0; j < pitchPoles.length; j++) {
+          if (pitchPoles[j][9] > (iRampTime + 0.2)) {
+            if (pitchPoles[j][7] == linesSet[i][4]) {
+              var tNewPPGain = scale(tLineLength, 0, (canvasH - 6), MINAMP, pitchPoles[j][2]);
+              var tPPGain = pitchPoles[j][1].gain;
+              tPPGain.cancelScheduledValues(0);
+              tPPGain.setValueAtTime(tNewPPGain, audioCtx.currentTime);
+              // Oscillator gains
+              for (var k = 0; k < pitchPoles[j][6].length; k++) {
+                if (pitchPoles[j][6][k][6] > (iRampTime + 0.2)) {
+                  var tBoscGain = pitchPoles[j][6][k][1].gain;
+                  tBoscGain.cancelScheduledValues(0);
+                  tBoscGain.setValueAtTime(tNewPPGain, audioCtx.currentTime);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //FUNCTION: vertLinesReset ----------------------------------------------- //
+  function vertLinesReset(linesSet) {
+    if (resetVertLines) {
+      for (var i = 0; i < linesSet.length; i++) {
+        // Shrink/Grow Lines //////////////////////////////
+        var line2growshrink = linesSet[i][0];
+        var tOldY1 = parseFloat(line2growshrink.getAttributeNS(null, 'y1'));
+        var tOldY2 = parseFloat(line2growshrink.getAttributeNS(null, 'y2'));
+        var tYSpd = linesSet[i][6];
+        var tYshrinkPt = linesSet[i][5];
+        var tY1Dir = -1;
+        var tY2Dir = 1;
+        var tNewY1, tNewY2;
+        if (tOldY1 != Y1MIN) {
+          tY1Dir = -1;
+        }
+        if (tOldY2 != Y2MAX) {
+          tY2Dir = 1;
+        }
+        if (tOldY1 <= Y1MIN) {
+          linesSet[i][10] = 1;
+          tOldY1 = Y1MIN;
+          tY1Dir = 0;
+          line2growshrink.setAttributeNS(null, 'y1', Y1MIN);
+        }
+        if (tOldY2 >= Y2MAX) {
+          linesSet[i][11] = -1;
+          tOldY2 = Y2MAX;
+          tY2Dir = 0;
+          line2growshrink.setAttributeNS(null, 'y2', Y2MAX);
+        }
+        //when line reaches its full length, reset gains one time
+        //// When line has reached full length
+        if (tOldY1 == Y1MIN && tOldY2 == Y2MAX) {
+          if (resetVertLinesGate) {
+            resetVertLinesGate = false;
+            for (var j = 0; j < pitchPoles.length; j++) {
+              if (pitchPoles[j][9] > (iRampTime + 0.2)) {
+                var tPPGain = pitchPoles[j][1].gain;
+                tPPGain.cancelScheduledValues(0);
+                tPPGain.setValueAtTime(pitchPoles[j][2], audioCtx.currentTime);
+                // Oscillator gains
+                for (var k = 0; k < pitchPoles[j][6].length; k++) {
+                  if (pitchPoles[j][6][k][6] > (iRampTime + 0.2)) {
+                    var tBoscGain = pitchPoles[j][6][k][1].gain;
+                    tBoscGain.cancelScheduledValues(0);
+                    tBoscGain.setValueAtTime(pitchPoles[j][2], audioCtx.currentTime);
+                  }
+                }
+              }
+            }
+          }
+        } else {
+          tNewY1 = tOldY1 + (tYSpd * tY1Dir);
+          tNewY2 = tOldY2 + (tYSpd * tY2Dir);
+          var tLineLength = Math.abs(tNewY1 - tNewY2);
+          line2growshrink.setAttributeNS(null, 'y1', tNewY1);
+          line2growshrink.setAttributeNS(null, 'y2', tNewY2);
+          // Pitch Pole Gain /////////////////////////////
+          for (var j = 0; j < pitchPoles.length; j++) {
+            if (pitchPoles[j][7] == linesSet[i][4]) {
+              if (pitchPoles[j][9] > (iRampTime + 0.2)) {
+                var tNewPPGain = scale(tLineLength, 0, (canvasH - 6), 0, pitchPoles[j][2]);
+                var tPPGain = pitchPoles[j][1].gain;
+                tPPGain.cancelScheduledValues(0);
+                tPPGain.setValueAtTime(tNewPPGain, audioCtx.currentTime);
+                // Oscillator gains
+                for (var k = 0; k < pitchPoles[j][6].length; k++) {
+                  if (pitchPoles[j][6][k][6] > (iRampTime + 0.2)) {
+                    var tBoscGain = pitchPoles[j][6][k][1].gain;
+                    tBoscGain.cancelScheduledValues(0);
+                    tBoscGain.setValueAtTime(tNewPPGain, audioCtx.currentTime);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
+  // FUNCTION: REMOVE BEATING OSCILLATOR rmvBOsc ------------------------ //
+  function rmvBOsc() {
+    if (oscLinesSet.length > 0) {
+      var now = audioCtx.currentTime;
+      // Chose random bosc
+      var tnumbosc2rmv = rrandIntFloor(0, oscLinesSet.length);
+      var tbosclinesix = oscLinesSet[tnumbosc2rmv][4];
+      for (var i = 0; i < oscillators.length; i++) {
+        oscillators[i][7] = false;
+        if (oscillators[i][4] == tbosclinesix) {
+          //envelope down gain node
+          var tboscGainToRmv = oscillators[i][1];
+          envOff(tboscGainToRmv.gain, 6);
+          //stop all oscillators
+          var tboscOscToRmv = oscillators[i][2];
+          tboscOscToRmv.stop(now + 6.2);
+        }
+      }
+      // remove from oscillators set
+      for (var i = (oscillators.length - 1); i >= 0; i--) {
+        if (oscillators[i][4] == tbosclinesix) {
+          oscillators.splice(i, 1);
+        }
+      }
+      //remove from pitchpoles array
+      for (var i = 0; i < pitchPoles.length; i++) {
+        for (var j = 0; j < pitchPoles[i][6].length; j++) {
+          if (pitchPoles[i][6][j][4] == tbosclinesix) {
+            pitchPoles[i][6].splice(j, 1);
+          }
+        }
+      }
+      //remove line
+      removeElement(oscLinesSet[tnumbosc2rmv][0].id);
+      //remove from oscLinesSet
+      oscLinesSet.splice(tnumbosc2rmv, 1);
+    }
+  }
+  // FUNCTION: REMOVE PITCH POLE rmvPP ---------------------------------- //
+  function rmvPP() {
+    if (pitchPoles.length > 0) {
+      var now = audioCtx.currentTime;
+      // Chose random pp
+      var tnumpp2rmv = rrandIntFloor(0, pitchPoles.length);
+      //envelope down gain node
+      var tppGainToRmv = pitchPoles[tnumpp2rmv][1];
+      envOff(tppGainToRmv.gain, 6);
+      //stop  oscillator
+      var tppOscToRmv = pitchPoles[tnumpp2rmv][3];
+      tppOscToRmv.stop(now + 6.2);
+      //stop oscillator & gain node
+      var tpplinesix = pitchPoles[tnumpp2rmv][7];
+      for (var i = 0; i < pitchPoles[tnumpp2rmv][6].length; i++) {
+        // pitchPoles[tnumpp2rmv][6][7] = false;
+        //envelope down gain node
+        envOff(pitchPoles[tnumpp2rmv][6][i][1].gain, 6);
+        //stop oscillator
+        pitchPoles[tnumpp2rmv][6][i][2].stop(now + 6.2);
+      }
+      //remove pitch pole line
+      removeElement(pitchPoles[tnumpp2rmv][0][0].id);
+      // if only one pp remove oscillator lines
+      if (pitchPoles.length == 1) {
+        for (var i = 0; i < pitchPoles[tnumpp2rmv][6].length; i++) {
+          removeElement(pitchPoles[tnumpp2rmv][6][i][0][0].id);
+          for (var j = 0; j < oscLinesSet.length; j++) {
+            if (oscLinesSet[j][4] == pitchPoles[tnumpp2rmv][6][i][4]) {
+              oscLinesSet.splice(j, 1);
+            }
+          }
+        }
+      }
+      // Remove all elements from arrays
+      for (var i = 0; i < ppLinesSet.length; i++) {
+        if (ppLinesSet[i][4] == tpplinesix) {
+          ppLinesSet.splice(i, 1);
+        }
+      }
+      for (var j = 0; j < oscillators.length; j++) {
+        oscillators[j][7] = false;
+        if (oscillators[j][4] == (pitchPoles[tnumpp2rmv][0][4] + 1000)) {
+          oscillators.splice(j, 1);
+        }
+      }
+      pitchPoles.splice(tnumpp2rmv, 1);
+    }
+  }
+  //////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////
+  /* Array Legend
+  tempLineGroup = [0-line, 1-Spd, 2-Accel, 3-dir, 4-ix, 5-shrinkPt, 6-spd,
+                   7-MvY, 8-YMoving, 9-lineID, 10-Y1Dir, 11-Y2Dir];
+
+  oscGr = [0-lineGr, 1-GainNode, 2-Osc, 3-GainNum, 4-lineix, 5-PanNode, 6-Clock, 7-on];
+
+  ppGr = [0-lineGr, 1-GainNode, 2-GainNum, 3-Osc, 4-Freq, 5-Midi, 6-oscGr,
+          7-Lineix, 8-PanNode, 9-Clock, 10-on];
+  */
+  //FUNCTION: vertMvtOn -------------------------------------------------- //
+  function vertMvtOn() {
+    mvLinesVertOn = true;
+    mvLinesVertOnGate = true;
+    resetVertLines = false;
+  }
+  //FUNCTION: vertMvtOff -------------------------------------------------- //
+  function vertMvtOff() {
+    mvLinesVertOn = false;
+    resetVertLines = true;
+    resetVertLinesGate = true;
+  }
+  //FUNCTION: killAudio ------------------------------------------------- //
+  function killAudio() {
+    envOff(masterGain.gain, 7);
+  }
+  //FUNCTION: initAudio ------------------------------------------------- //
+  function initAudio() {
+    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(1, audioCtx.currentTime);
+    masterGain.connect(audioCtx.destination);
+  }
+  //FUNCTION mkStartBtn ------------------------------------------------- //
+  function mkStartBtn() {
+    startButton = document.createElement('button');
+    startButton.style.backgroundColor = "transparent";
+    startButton.style.positon = "absolute";
+    startButton.style.width = '99vw';
+    startButton.style.height = "99vh";
+    startButton.style.top = "0px";
+    startButton.style.left = "0px";
+    startButton.addEventListener("click", play);
+    document.body.appendChild(startButton);
+  }
+  //FUNCTION mkDivBtn --------------------------------------------------- //
+  function mkDivBtn(divID, t, r, b, l, w, h, clickfunc) {
+    var tDiv = document.createElement('div');
+    tDiv.id = divID;
+    tDiv.style.backgroundColor = "transparent";
+    tDiv.style.position = "absolute";
+    tDiv.style.top = t;
+    tDiv.style.right = r;
+    tDiv.style.bottom = b;
+    tDiv.style.left = l;
+    tDiv.style.width = w + "px";
+    tDiv.style.height = h + "px";
+    document.body.appendChild(tDiv);
+    var tBtn = document.createElement('button');
+    tBtn.style.backgroundColor = "transparent";
+    tBtn.style.width = "100%";
+    tBtn.style.height = "100%";
+    tBtn.style.outline = "none";
+    tBtn.style.positon = "absolute";
+    tBtn.style.top = "0px";
+    tBtn.style.left = "0px";
+    tBtn.addEventListener("click", clickfunc);
+    var tBtnDiv = document.getElementById(divID);
+    tBtnDiv.appendChild(tBtn);
+  }
+  //FUNCTION envAtk0 ---------------------------------------------------- //
+  function envAtk0(vcaGain, attackDur, attackAmp) {
+    var tblsz = 3000 * attackDur;
+    var amptable = [];
+    var attackAmpdb = linamp2db(attackAmp);
+    var inc = Math.abs((MINGAIN - attackAmpdb) / tblsz);
+    for (var i = 0; i < tblsz; i++) {
+      var tempamp = db2linamp(MINGAIN + (inc * i));
+      amptable.push(tempamp);
+    }
+    var now = audioCtx.currentTime;
+    vcaGain.cancelScheduledValues(0);
+    vcaGain.setValueAtTime(0, now);
+    vcaGain.setValueCurveAtTime(amptable, now + 0.05, attackDur);
+  }
+  //FUNCTION envAtk1 ------------------------------------------------------ //
+  function envAtk1(vcaGain, attackStartTime, attackDur, attackAmp) {
+    var tblsz = 3000 * attackDur;
+    var amptable = [];
+    var attackAmpdb = linamp2db(attackAmp);
+    var iAmpDb;
+    if (vcaGain.value != 0) {
+      iAmpDb = linamp2db(vcaGain.value);
+    } else {
+      iAmpDb = MINGAIN;
+    }
+    var inc;
+    if (attackAmpdb > iAmpDb) {
+      inc = Math.abs(Math.abs(attackAmpdb) - Math.abs(iAmpDb)) / tblsz;
+    } else if (iAmpDb > attackAmpdb) {
+      inc = -1 * (Math.abs(Math.abs(iAmpDb) - Math.abs(attackAmpdb)) / tblsz);
+    }
+    for (var i = 0; i < tblsz; i++) {
+      var tempamp = db2linamp(iAmpDb + (inc * i));
+      amptable.push(tempamp);
+    }
+    var tStartTime = audioCtx.currentTime + attackStartTime;
+    vcaGain.cancelScheduledValues(0);
+    vcaGain.setValueCurveAtTime(amptable, tStartTime, attackDur);
+  }
+  //FUNCTION envAtk2 ------------------------------------------------------ //
+  function envAtk2(vcaGain, attackStartTime, attackDur, attackAmp) {
+    var now = audioCtx.currentTime;
+    var tStartTime = now + attackStartTime;
+    vcaGain.cancelScheduledValues(0);
+    vcaGain.setValueAtTime(0, now);
+    vcaGain.linearRampToValueAtTime(attackAmp, (tStartTime + attackDur));
+  }
+  //FUNCTION envOff ------------------------------------------------------ //
+  function envOff(vcaGain, releaseTime) {
+    var now = audioCtx.currentTime;
+    vcaGain.cancelScheduledValues(0);
+    vcaGain.setValueAtTime(vcaGain.value, now);
+    vcaGain.linearRampToValueAtTime(0, now + releaseTime);
+  }
+  // FUNCTION: winResize ---------------------------------------------- //
+  function winResize() {
+    canvasW = window.innerWidth;
+    canvasH = window.innerHeight;
+    Y2MAX = canvasH - Y1MIN;
+    for (var i = 0; i < oscLinesSet.length; i++) {
+      oscLinesSet[i][0].setAttributeNS(null, 'y2', Y2MAX);
+    }
+    for (var i = 0; i < ppLinesSet.length; i++) {
+      ppLinesSet[i][0].setAttributeNS(null, 'y2', Y2MAX);
+    }
+  }
+  // FUNCTION: mtof -------------------------------------------------- //
+  function mtof(midinote) {
+    var freq;
+    freq = Math.pow(2, ((midinote - 69) / 12)) * 440;
+    return freq;
+  }
+  // FUNCTION: ftom -------------------------------------------------- //
+  function ftom(freq) {
+    var midi;
+    midi = (Math.log2((freq / 440)) * 12) + 69;
+    return midi;
+  }
+  // FUNCTION: rrand ------------------------------------------------- //
+  function rrand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+  // FUNCTION: rrandInt ---------------------------------------------- //
+  function rrandInt(min, max) {
+    var tmin = min - 0.4999999;
+    var tmax = max + 0.4999999;
+    return Math.round(Math.random() * (tmax - tmin) + tmin);
+  }
+  // FUNCTION: rrandInt ---------------------------------------------- //
+  function rrandIntFloor(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+  // FUNCTION: rrand ------------------------------------------------- //
+  function choose(tempSet) {
+    var randpick = rrandIntFloor(0, tempSet.length);
+    return tempSet[randpick];
+  }
+  // FUNCTION: scale -------------------------------------------------- //
+  const scale = (num, in_min, in_max, out_min, out_max) => {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+  }
+  // FUNCTION: norm -------------------------------------------------- //
+  const norm = (num, in_min, in_max) => {
+    return (num - in_min) * (1.0 - 0.0) / (in_max - in_min);
+  }
+  // FUNCTION: shuffle ------------------------------------------------ //
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  // FUNCTION: db2linamp ---------------------------------------------- //
+  function db2linamp(db) {
+    var lamp = Math.pow(10, (db / 20));
+    return lamp;
+  }
+  // FUNCTION: linamp2db ---------------------------------------------- //
+  function linamp2db(linamp) {
+    var db = 20 * Math.log(linamp);
+    return db;
+  }
+  // FUNCTION: equalLoudnessCalc -------------------------------------- //
+  function equalLoudnessCalc(freq, phon) {
+    var spl0, spl1, ix0, ix1, tAf0, tAf1;
+    var f = [20, 25, 31.5, 40, 50, 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800,
+      1000, 1250, 1600, 2000, 2500, 3150, 4000, 5000, 6300, 8000, 10000, 12500
+    ];
+
+    var af = [0.532, 0.506, 0.480, 0.455, 0.432, 0.409, 0.387, 0.367, 0.349, 0.330, 0.315,
+      0.301, 0.288, 0.276, 0.267, 0.259, 0.253, 0.250, 0.246, 0.244, 0.243, 0.243,
+      0.243, 0.242, 0.242, 0.245, 0.254, 0.271, 0.301
+    ];
+
+    var Lu = [-31.6, -27.2, -23.0, -19.1, -15.9, -13.0, -10.3, -8.1, -6.2, -4.5, -3.1,
+      -2.0, -1.1, -0.4, 0.0, 0.3, 0.5, 0.0, -2.7, -4.1, -1.0, 1.7,
+      2.5, 1.2, -2.1, -7.1, -11.2, -10.7, -3.1
+    ];
+
+    var Tf = [78.5, 68.7, 59.5, 51.1, 44.0, 37.5, 31.5, 26.5, 22.1, 17.9, 14.4,
+      11.4, 8.6, 6.2, 4.4, 3.0, 2.2, 2.4, 3.5, 1.7, -1.3, -4.2,
+      -6.0, -5.4, -1.5, 6.0, 12.6, 13.9, 12.3
+    ];
+
+    if ((phon < 0) || (phon > 90)) {
+      spl = 0;
+    } else {
+      //find nearest frequencies in table
+      for (var i = 0; i < f.length; i++) {
+        if (freq < f[i]) {
+          ix0 = i - 1;
+          ix1 = i;
+          break;
+        }
+      }
+      //Deriving sound pressure level from loudness level (iso226 sect 4.1)
+      tAf0 = (0.00447 * (Math.pow(10, (0.025 * phon)) - 1.15)) +
+        Math.pow((0.4 * Math.pow(10, (((Tf[ix0] + Lu[ix0]) / 10) - 9))), af[ix0]);
+      tAf1 = (0.00447 * (Math.pow(10, (0.025 * phon)) - 1.15)) +
+        Math.pow((0.4 * Math.pow(10, (((Tf[ix1] + Lu[ix1]) / 10) - 9))), af[ix1]);
+      spl0 = ((10 / af[ix0]) * Math.log10(tAf0)) - Lu[ix0] + 94;
+      spl1 = ((10 / af[ix1]) * Math.log10(tAf1)) - Lu[ix1] + 94;
+    }
+    spl = scale(ftom(freq), ftom(f[ix0]), ftom(f[ix1]), spl0, spl1);
+    return spl;
+  }
+  // FUNCTION: removeElement ------------------------------------------ //
+  function removeElement(elementId) {
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+  }
+  // FUNCTION: clamp ---------------------------------------------- //
+  function clamp(num, min, max) {
+    return num <= min ? min : num >= max ? max : num;
+  }
+</script>
+
+</html>
