@@ -18,7 +18,7 @@ sidenavdiv.appendChild(link);
 var link = document.createElement('a');
 var linktxt = document.createTextNode("Works");
 link.appendChild(linktxt);
-link.href = "#";
+link.href = "works.html";
 sidenavdiv.appendChild(link);
 // M3 ----------------------------------------------------------------- //
 var link = document.createElement('a');
@@ -50,7 +50,8 @@ tcirc.setAttributeNS(null, "cx", (menuicondivW / 2));
 tcirc.setAttributeNS(null, "cy", (menuicondivH / 2));
 tcirc.setAttributeNS(null, "r", (menuicondivW / 2));
 tcirc.setAttributeNS(null, "stroke", "none");
-tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
+tcirc.setAttributeNS(null, "fill", "#2DA8D8FF");
+// tcirc.setAttributeNS(null, "fill", "#2BAE66FF#2DA8D8FF");
 tcirc.setAttributeNS(null, "cursor", "pointer");
 tcirc.className.baseVal = "menucirc";
 tcirc.addEventListener("click", openNav);
@@ -122,7 +123,7 @@ function openNav() {
     midline.setAttributeNS(null, "stroke", "black");
     topline.setAttributeNS(null, "stroke", "black");
     btmline.setAttributeNS(null, "stroke", "black");
-    tcirc.setAttributeNS(null, "fill", "#2BAE66FF");
+    tcirc.setAttributeNS(null, "fill", "#2DA8D8FF");
     navopen = false;
   }
 }
