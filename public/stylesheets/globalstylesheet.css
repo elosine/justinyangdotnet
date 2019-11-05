@@ -55,7 +55,7 @@
 h1 {
   padding: 13px 0px 10px 0px;
   text-decoration: none;
-  font-size: 28px;
+  font-size: 25px;
   display: block;
   background-color: black;
   text-align: center;
@@ -151,8 +151,8 @@ h6 {
   height: 360px;
   margin-top: 15px;
   background-color: white;
-  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .54), 0px 0px 40px rgba(255, 255, 255, 0.8);
-  border-radius: 25px;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .54), 0px 0px 25px rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
   text-align: center;
 }
 
@@ -171,7 +171,7 @@ h6 {
   top: 20px;
   color: #FAD0C9FF;
   background-color: #6E6E6DFF;
-  font-size: 24px;
+  font-size: 21px;
   cursor: pointer;
 }
 
@@ -194,12 +194,12 @@ h6 {
   top: 20px;
   color: #6E6E6DFF;
   background-color: #FAD0C9FF;
-  font-size: 24px;
+  font-size: 21px;
   cursor: pointer;
 }
 
 .buttonDiv2 a:hover {
-  color: #2BAE66FF;  
+  color: #2BAE66FF;
 }
 
 /* @media screen and (max-width: 400px) { */
@@ -225,12 +225,35 @@ h6 {
   }
 
   .oneColumnContentDiv {
+    display: inline-block;
+    vertical-align: middle;
     position: relative;
     width: calc(100% - 45px);
     height: 0;
     margin-left: 0px;
     padding-bottom: 57.26%;
-    background-color: black;
+    background-color: white;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .54), 0px 0px 20px rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  .buttonDiv1 a {
+    position: relative;
+    top: 20px;
+    color: #FAD0C9FF;
+    background-color: #6E6E6DFF;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .buttonDiv2 a {
+    position: relative;
+    top: 20px;
+    color: #6E6E6DFF;
+    background-color: #FAD0C9FF;
+    font-size: 18px;
+    cursor: pointer;
   }
 }
 
