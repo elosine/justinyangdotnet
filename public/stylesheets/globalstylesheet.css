@@ -319,7 +319,7 @@ h2 {
   .buttonDiv1 {
     position: relative;
     left: 25px;
-    top: 17px;
+    top: 19px;
     width: calc(100% - 50px);
     height: 70px;
     border-radius: 15px;
@@ -329,7 +329,7 @@ h2 {
   .buttonDiv2 {
     position: relative;
     left: 25px;
-    top: 40px;
+    top: 42px;
     width: calc(100% - 50px);
     height: 70px;
     border-radius: 15px;
