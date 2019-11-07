@@ -218,7 +218,7 @@ h6 {
   width: 870px;
   /* height: 390px; */
   height: 437px;
-  margin-top: 15px;
+  margin-top: 50px;
   background-color: white;
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .54), 0px 0px 25px rgba(255, 255, 255, 0.8);
   border-radius: 18px;
@@ -251,8 +251,8 @@ h6 {
 
 .captionDiv a:after {
   /* line-height: 2.5em; */
-    content: '\A \A';
-    white-space: pre;
+  content: '\A \A';
+  white-space: pre;
 }
 
 .captionDiv a {
@@ -311,6 +311,102 @@ h4 {
 
 /* @media screen and (max-width: 400px) { */
 @media screen and (max-width: 600px) {
+  .captionedImgContainer {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 45px);
+    height: 0;
+    margin-left: 0px;
+    margin-top: 15px;
+    padding-bottom: calc(56.25% + 50px);
+    background-color: white;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .54), 0px 0px 25px rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+  }
+
+  .vidDiv {
+    background-color: #6E6E6DFF;
+    position: relative;
+    left: 15px;
+    top: 15px;
+    width: calc(100% - 30px);
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+
+  .titleDiv {
+    position: absolute;
+    width: calc(100% - 30px);
+    background-color: white;
+    top: calc(100% - 55px);
+    height: 41px;
+  }
+
+  h2 {
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    font-size: 18px;
+    background-color: white;
+    color: #6E6E6DFF;
+  }
+
+  h4 {
+    position: absolute;
+    left: 50px;
+    top: 26px;
+    font-size: 12px;
+    background-color: white;
+    color: #6E6E6DFF;
+  }
+
+  .captionDiv {
+    /* background-color: #6E6E6DFF; */
+    background-color: grey;
+    float: right;
+    position: absolute;
+    left: 15px;
+    top: calc(100% - 55px);
+    width: calc(100% - 30px);
+    height: 360px;
+    text-align: right;
+    line-height: 1.2em;
+  }
+
+  .captionDiv a:after {
+    /* line-height: 2.5em; */
+    content: '\A \A';
+    white-space: pre;
+  }
+
+  .captionDiv a {
+    /* background-color: #6E6E6DFF; */
+    background-color: white;
+    position: relative;
+    right: 0;
+    top: 10px;
+    right: 9px;
+    padding: 0px 0px 0px 5px;
+    color: #6E6E6DFF;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: right;
+  }
+
+  .captionDiv a:hover {
+    color: #2DA8D8FF;
+  }
+
+  .iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
   .mainbodydiv {
     position: absolute;
     background-color: black;
@@ -387,7 +483,6 @@ h4 {
 /* Pink Salt #FAD0C9FF
 Blue Blossom #2DA8D8FF
 Charcoal Gray #6E6E6DFF */
-
 /* Danger Red (#D9514EFF), Tap Shoe (#2A2B2DFF) and Blue Blossom (#2DA8D8FF) */
 /* Puffin’s Bill (#E95C20FF), Green (#006747FF) and Brown (#4F2C1DFF) */
 /* Living Coral (#FC766AFF), Storm Gray (#B0B8B4FF) and Forest Biome (#184A45FF) */
