@@ -5,14 +5,16 @@
   <meta charset="utf-8">
   <title>Those cracks should be flowers</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 </head>
 
 <style>
   * {
-    font-family: 'Lato';
+    font-family: 'Nunito', sans-serif;
     margin: 0;
     padding: 0;
     border: none;
+    background-color: black;
   }
 
   #svgcanvas {
@@ -24,9 +26,101 @@
     width: 100%;
     z-index: -1;
   }
+
+  .captionedImgContainer {
+    display: inline-block;
+    vertical-align: middle;
+    width: 835px;
+    /* height: 437px; */
+    height: 540px;
+    left: calc(50% - 395px);
+    top: 50px;
+    background-color: white;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .54), 0px 0px 25px rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+    text-align: left;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 21px;
+    background-color: white;
+    color: #2DA8D8FF;
+    position: absolute;
+    top: 20px;
+    left: 28px;
+    width: 760px;
+  }
+
+  h1 i {
+    background-color: white;
+  }
+
+  .captionedImgContainer p {
+    background-color: white;
+    color: black;
+    padding: 10px 10px 10px 10px;
+    width: 780px;
+    left: 20px;
+    top: 60px;
+    font-size: 18px;
+    position: absolute;
+    text-align: left;
+  }
+
+  .captionedImgContainer p b {
+    background-color: white;
+    color: #2DA8D8FF;
+  }
+
+  .stbtn {
+    background-color: #FAD0C9FF;
+    color: black;
+    border-radius: 18px;
+    bottom: 25px;
+    position: absolute;
+    left: 40px;
+    font-size: 18px;
+    width: 350px;
+    height: 80px;
+  }
+
+  .stbtn:hover {
+    background-color: #2DA8D8FF;
+  }
 </style>
 
 <body onload='setup();'>
+  <div class="captionedImgContainer" id="instCont">
+    <h1><i>Those cracks should be flowers</i> - Performance Instructions</h1>
+    <p>
+      This work has two elements: light poles glowing neon colors and light poles emitting white light.
+      <br />
+      The neon light poles each generate a pure wave tone at one of seven pitches.
+      <br />
+      The light poles glowing white generate pure wave tones that beat against the neon light poles.
+      <br />
+      <br />
+    </p>
+    <p style="top:150px; line-height:1.8em">
+      There are 7 invisible buttons that perform various actions:
+      <br />
+      <b>BOTTOM-LEFT</b> - Launch a neon light pole
+      <br />
+      <b>BOTTOM-RIGHT</b> - Launch a light pole glowing white
+      <br />
+      <b>TOP-LEFT</b> - Remove a neon light pole
+      <br />
+      <b>TOP-RIGHT</b> - Remove a light pole glowing white
+      <br />
+      <b>MIDDLE-RIGHT-SIDE</b> - Grow/Shrink light poles
+      <br />
+      <b>MIDDLE-LEFT-SIDE</b> - Full size light poles
+      <br />
+      <b>CENTER OF SCREEN</b> - Kill all audio (cannot undo)
+    </p>
+    <button id='startbutton' class='stbtn'> Start Piece</button>
+  </div>
   <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <!-- Filter: white -->
@@ -430,7 +524,8 @@
   function play() {
     if (!played) {
       played = true;
-      startButton.parentNode.removeChild(startButton);
+      var startscreen = document.getElementById("instCont");
+      startscreen.parentNode.removeChild(startscreen);
       mkDivBtn("addPP", null, null, '0px', '0px', 100, 100, mkPitchPole);
       mkDivBtn("addBOsc", null, '0px', '0px', null, 100, 100, mkOscillatorLine);
       mkDivBtn("rmvPP", '0px', null, null, '0px', 100, 100, rmvPP);
@@ -954,15 +1049,8 @@
   }
   //FUNCTION mkStartBtn ------------------------------------------------- //
   function mkStartBtn() {
-    startButton = document.createElement('button');
-    startButton.style.backgroundColor = "transparent";
-    startButton.style.positon = "absolute";
-    startButton.style.width = '99vw';
-    startButton.style.height = "99vh";
-    startButton.style.top = "0px";
-    startButton.style.left = "0px";
+    startButton = document.getElementById('startbutton');
     startButton.addEventListener("click", play);
-    document.body.appendChild(startButton);
   }
   //FUNCTION mkDivBtn --------------------------------------------------- //
   function mkDivBtn(divID, t, r, b, l, w, h, clickfunc) {

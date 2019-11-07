@@ -5,14 +5,16 @@
   <meta charset="utf-8">
   <title>Those cracks should be flowers</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 </head>
 
 <style>
   * {
-    font-family: 'Lato';
-    margin: 0;
-    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    margin: 0px;
+    padding: 0px;
     border: none;
+    background-color: black;
   }
 
   #svgcanvas {
@@ -24,9 +26,70 @@
     width: 100%;
     z-index: -1;
   }
+
+  .sform {
+    background-color: black;
+    position: absolute;
+    height: 200px;
+    width: 270px;
+    font-size: 21px;
+    top: 75px;
+    left: calc(50% - 285px);
+    padding: 15px 15px 15px 15px;
+    color: #FAD0C9FF;
+
+  }
+
+  .sform input {
+    height: 50px;
+    font-size: 24;
+    width: 240px;
+    color: black;
+    background-color: white;
+    font-size: 28px;
+    text-align: right;
+    padding-right: 15px;
+  }
+
+  .stbtn {
+    background-color: #FAD0C9FF;
+    color: black;
+    border-radius: 18px;
+    top: 102px;
+    position: absolute;
+    right: calc(50% - 300px);
+    font-size: 18px;
+    width: 300px;
+    height: 70px;
+  }
+
+  .stbtn:hover {
+    background-color: #2DA8D8FF;
+  }
+
+  h1 {
+    font-size: 21px;
+    background-color: black;
+    color: #2DA8D8FF;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 i {
+    background-color: black;
+  }
 </style>
 
 <body onload='setup();'>
+<h1 id="titleheader"><i>Those cracks should be flowers</i> - Generated Performance</h1>
+  <form class="sform" id="startform">
+    Piece Duration (in minutes):<br>
+    <input type="number" min="3"  name="pieceduration"><br>
+  </form>
+  <button id='startbutton' class='stbtn'> Start Piece</button>
+
   <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <!-- Filter: white -->
@@ -424,10 +487,13 @@
   // GENERATED COMPOSITION /////////////////////////
   var pieceData;
   var playPieceGate = false;
+  var durform;
+  var piecedur = 7.14;
   // SET UP ----------------------------------------------------------- //
   function setup() {
-    pieceData = generatePiece(2.5);
-    mkStartBtn();
+    startButton = document.getElementById('startbutton');
+    durform = document.getElementById('startform');
+    startButton.addEventListener("click", play);
     window.addEventListener('resize', winResize, false);
   }
   // FUNCTION: generatePiece ------------------------------------------- //
@@ -487,12 +553,11 @@
     timelineFrames.rmvPpFrames = rmvPpFrames;
     var startCresFrame = dat.startCres * dur * FRAMERATE;
     var stopCresFrame = dat.stopCres * dur * FRAMERATE;
-    timelineFrames.startCresFrame = startCresFrame;
-    timelineFrames.stopCresFrame = stopCresFrame;
+    timelineFrames.startCresFrame = Math.round(startCresFrame);
+    timelineFrames.stopCresFrame = Math.round(stopCresFrame);
     timelineFrames.durFrames = dur * FRAMERATE;
     return timelineFrames;
   }
-  var g = true;
   // FUNCTION: playPiece ------------------------------------------- //
   function playPiece() {
     if (playPieceGate) {
@@ -535,7 +600,6 @@
 
     }
   }
-
   // FUNCTION: divvy ------------------------------------------- //
   //// Generates a set of parts from a number and a min
   function divvy(start, number, parts, min) {
@@ -565,12 +629,31 @@
     }
     return pieces;
   }
+  //FUNCTION mkStartBtn ------------------------------------------------- //
+  function mkStartBtn() {
+    startButton = document.createElement('button');
+    startButton.style.backgroundColor = "transparent";
+    startButton.style.positon = "absolute";
+    startButton.style.width = '99vw';
+    startButton.style.height = "99vh";
+    startButton.style.top = "0px";
+    startButton.style.left = "0px";
+    startButton.addEventListener("click", play);
+    document.body.appendChild(startButton);
+  }
   //FUNCTION play ------------------------------------------------------ //
   function play() {
     if (!played) {
       played = true;
+      piecedur = Math.max(3, parseFloat(durform.elements[0].value));
+      pieceData = generatePiece(piecedur);
       playPieceGate = true;
       startButton.parentNode.removeChild(startButton);
+      startform.parentNode.removeChild(startform);
+      var title = document.getElementById("titleheader");
+      title.parentNode.removeChild(title);
+      document.body.style.cursor = "none";
+      framect = 0;
       initAudio();
       requestAnimationFrame(animationEngine);
     }
@@ -1086,18 +1169,6 @@
     masterGain = audioCtx.createGain();
     masterGain.gain.setValueAtTime(1, audioCtx.currentTime);
     masterGain.connect(audioCtx.destination);
-  }
-  //FUNCTION mkStartBtn ------------------------------------------------- //
-  function mkStartBtn() {
-    startButton = document.createElement('button');
-    startButton.style.backgroundColor = "transparent";
-    startButton.style.positon = "absolute";
-    startButton.style.width = '99vw';
-    startButton.style.height = "99vh";
-    startButton.style.top = "0px";
-    startButton.style.left = "0px";
-    startButton.addEventListener("click", play);
-    document.body.appendChild(startButton);
   }
   //FUNCTION mkDivBtn --------------------------------------------------- //
   function mkDivBtn(divID, t, r, b, l, w, h, clickfunc) {
